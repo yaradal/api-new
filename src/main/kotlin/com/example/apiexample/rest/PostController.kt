@@ -5,6 +5,10 @@ import com.example.apiexample.service.PostService
 import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.server.ResponseStatusException
+
+
+
 
 @Controller
 @RestController
@@ -18,6 +22,13 @@ class PostController(val service: PostService) {
     @ResponseStatus(HttpStatus.OK)
     fun getPost(@PathVariable id: Long): Post {
         return service.getPostById(id)
+       // throw ResponseStatusException(HttpStatus.BAD_REQUEST, "Available statuses are: CREATED, APPROVED, REJECTED, BLOCKED, DONE.")
+
+    }
+
+    fun isStatusValid(status: String): Boolean {
+        return (status.equals("CREATED") || status.equals("CREATED") || status.equals("APPROVED") || status.equals("REJECTED") || status.equals(
+            "BLOCKED") || status.equals("DONE"))
     }
 
     @GetMapping(value = ["/{id}"])
@@ -55,11 +66,15 @@ class PostController(val service: PostService) {
 
     //    GET at /posts/{id}/comments which should:
     //    Return all comments sorted by creation date in descending order for a post with passed {id}
-   //    Return empty list if a post with passed {id} does not exists or when it does not contain any comments
+    //    Return empty list if a post with passed {id} does not exists or when it does not contain any comments
     @GetMapping("/{id}/comments")
     @ResponseStatus(HttpStatus.CREATED)
     fun returnCommentToPost(@PathVariable id: Long) {
 
     }
 
+
+    fun parseCommand (input: String){
+        input.split(" ")
+    }
 }

@@ -32,4 +32,5 @@ lateinit var repository : CommentRepository
     fun getPost(@PathVariable id: Long): List<Comment> {
          return repository.findAllByPostId(id)
     }
+
 }
