@@ -1,6 +1,3 @@
-//package com.codility.rest;
-//
-//import com.codility.domain.*;
 //import org.springframework.beans.factory.annotation.Autowired;
 //
 //@Controller
